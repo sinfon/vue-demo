@@ -1,14 +1,32 @@
 <template>
   <div class="cursor-drag-demo">
-    <div class="left-side demo-el"></div>
-    <div class="splitter demo-el"></div>
+    <div class="left-side demo-el" :style="leftSideStyle"></div>
+    <div class="splitter demo-el" :style="splitterStyle"></div>
     <div class="right-side demo-el"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CursorDragDemo'
+  name: 'CursorDragDemo',
+  data () {
+    return {
+      splitterWidth: 30,
+      leftSideWidth: window.innerWidth / 2 - 15
+    }
+  },
+  computed: {
+    leftSideStyle () {
+      return {
+        width: this.leftSideWidth + 'px'
+      }
+    },
+    splitterStyle () {
+      return {
+        width: this.splitterWidth + 'px'
+      }
+    }
+  }
 }
 </script>
 
@@ -26,7 +44,6 @@ export default {
   opacity: .1;
 }
 .splitter {
-  width: 30px;
 }
 .right-side {
   flex: 1;
