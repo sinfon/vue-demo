@@ -8,6 +8,12 @@
 vue init webpack vue-demo
 ```
 
+## Install New Dependency
+
+```bash
+npm install dependency-name --save-dev
+```
+
 ## Build Setup
 
 ``` bash
