@@ -1,8 +1,8 @@
 <template>
   <div class="cursor-drag-demo">
-    <div class="left-side"></div>
-    <div class="splitter"></div>
-    <div class="right-side"></div>
+    <div class="left-side demo-el"></div>
+    <div class="splitter demo-el"></div>
+    <div class="right-side demo-el"></div>
   </div>
 </template>
 
@@ -15,6 +15,10 @@ export default {
 <style scoped>
 .cursor-drag-demo {
   width: 100%;
+  height: 100%;
+  display: flex;
+}
+.demo-el {
   height: 100%;
 }
 .left-side {
