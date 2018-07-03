@@ -2,6 +2,12 @@
 
 > Vue Demo
 
+## Init Project
+
+```bash
+vue init webpack vue-demo
+```
+
 ## Build Setup
 
 ``` bash
