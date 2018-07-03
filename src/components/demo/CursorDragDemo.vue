@@ -98,6 +98,6 @@ export default {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(3, 3, 3, 0.1);
 }
 </style>
