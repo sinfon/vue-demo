@@ -1,8 +1,11 @@
 <template>
   <div class="cursor-drag-demo">
-    <div class="left-side demo-el" :style="leftSideStyle"></div>
-    <div class="splitter demo-el" :style="splitterStyle"></div>
-    <div class="right-side demo-el"></div>
+    <div class="demo-elements">
+      <div class="left-side demo-el" :style="leftSideStyle"></div>
+      <div class="splitter demo-el" :style="splitterStyle"></div>
+      <div class="right-side demo-el"></div>
+    </div>
+    <div class="window-cover" v-if="showCover"></div>
   </div>
 </template>
 
@@ -12,7 +15,8 @@ export default {
   data () {
     return {
       splitterWidth: 30,
-      leftSideWidth: window.innerWidth / 2 - 15
+      leftSideWidth: window.innerWidth / 2 - 15,
+      showCover: false
     }
   },
   computed: {
@@ -34,20 +38,45 @@ export default {
 .cursor-drag-demo {
   width: 100%;
   height: 100%;
+}
+
+.demo-elements {
+  width: 100%;
+  height: 100%;
   display: flex;
 }
+
 .demo-el {
   height: 100%;
 }
+
 .left-side {
   background: red;
   opacity: .1;
 }
+
 .splitter {
+  cursor: col-resize;
 }
+.splitter:hover {
+  border: solid 1px black;
+  background: yellow;
+  opacity: .1;
+}
+
 .right-side {
   flex: 1;
   background: blue;
   opacity: .1;
+}
+
+.window-cover {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.3);
 }
 </style>
