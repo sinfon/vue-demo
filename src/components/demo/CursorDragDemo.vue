@@ -2,10 +2,10 @@
   <div class="cursor-drag-demo">
     <div class="demo-elements">
       <div class="left-side demo-el" :style="leftSideStyle"></div>
-      <div class="splitter demo-el" :style="splitterStyle"></div>
+      <div class="splitter demo-el" :style="splitterStyle" @mousedown="startDrag"></div>
       <div class="right-side demo-el"></div>
     </div>
-    <div class="window-cover" v-if="showCover"></div>
+    <div class="window-cover" v-if="isCoverShown" @mousemove="drag" @mouseup="endDrag"></div>
   </div>
 </template>
 
@@ -16,7 +16,9 @@ export default {
     return {
       splitterWidth: 30,
       leftSideWidth: window.innerWidth / 2 - 15,
-      showCover: false
+      isCoverShown: false,
+      isDragStart: false,
+      startCursorX: null
     }
   },
   computed: {
@@ -29,6 +31,26 @@ export default {
       return {
         width: this.splitterWidth + 'px'
       }
+    }
+  },
+  methods: {
+    startDrag (event) {
+      this.isDragStart = true
+      this.isCoverShown = true
+      this.startCursorX = event.clientX
+    },
+    drag (event) {
+      if (this.isDragStart) {
+        let currentCursorX = event.clientX
+        let offset = currentCursorX - this.startCursorX
+        // update start cursor X
+        this.startCursorX = currentCursorX
+        this.leftSideWidth = this.leftSideWidth + offset
+      }
+    },
+    endDrag () {
+      this.isDragStart = false
+      this.isCoverShown = false
     }
   }
 }
@@ -59,7 +81,6 @@ export default {
   cursor: col-resize;
 }
 .splitter:hover {
-  border: solid 1px black;
   background: yellow;
   opacity: .1;
 }
